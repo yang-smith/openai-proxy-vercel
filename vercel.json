@@ -3,14 +3,15 @@
     "builds": [
       { "src": "app/api/**/*", "use": "@vercel/node" }
     ],
-    "headers": [
+    "routes": [
       {
         "src": "/api/openai",
         "headers": {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "content-type, Authorization"
-        }
+        },
+        "dest": "/app/api/openai/route.ts"
       },
       {
         "src": "/api/azure",
@@ -18,12 +19,9 @@
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "content-type, Authorization"
-        }
+        },
+        "dest": "/app/api/azure/route.ts"
       }
-    ],
-    "rewrites": [
-      { "source": "/api/openai", "destination": "/app/api/openai/route.ts" },
-      { "source": "/api/azure", "destination": "/app/api/azure/route.ts" }
     ]
   }
   
