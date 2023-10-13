@@ -8,9 +8,9 @@ const openai = new OpenAIApi(config);
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  if (req.method === "OPTIONS") {
+  if (req.method === "OPTIONS") {  // CROS
     return new Response(null, {
-      status: 200,
+      status: 200, 
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
