@@ -1,7 +1,6 @@
 {
     "version": 2,
     "builds": [
-      { "src": "app/**/*.tsx", "use": "@vercel/next" },
       { "src": "app/api/**/[...params].ts", "use": "@vercel/node" }
     ],
     "rewrites": [
