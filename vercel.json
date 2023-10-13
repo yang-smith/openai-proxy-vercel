@@ -11,11 +11,19 @@
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "content-type, Authorization"
         }
+      },
+      {
+        "src": "/api/azure",
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "content-type, Authorization"
+        }
       }
     ],
     "rewrites": [
-      { "source": "/api/openai", "destination": "/app/api/openai/route.js" },
-      { "source": "/api/azure/:path*", "destination": "/app/api/azure/:path.js" }
+      { "source": "/api/openai", "destination": "/app/api/openai/route.ts" },
+      { "source": "/api/azure", "destination": "/app/api/azure/route.ts" }
     ]
   }
   
