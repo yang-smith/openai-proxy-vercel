@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   // Handle preflight request
   if (req.method === "OPTIONS") {
     return new Response(null, {
-      status: 204,
+      status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
