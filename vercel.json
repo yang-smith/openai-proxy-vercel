@@ -1,4 +1,20 @@
 {
+    "version": 2,
+    "builds": [
+      { "src": "app/api/**/*", "use": "@vercel/node" }
+    ],
+    "routes": [
+      {
+        "src": "/api/openai",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "dest": "/app/api/openai/route.js"
+      },
+      {
+        "src": "/api/azure/(.*)",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "dest": "/app/api/azure/$1.js"
+      }
+    ],
     "headers": [
       {
         "source": "/api/(.*)",
