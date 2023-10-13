@@ -2,10 +2,10 @@
     "version": 2,
     "builds": [
       { "src": "app/**/*.tsx", "use": "@vercel/next" },
-      { "src": "app/api/**/route.ts", "use": "@vercel/node" }
+      { "src": "app/api/**/[...params].ts", "use": "@vercel/node" }
     ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "/app/api/$1/route.ts" }
+    "rewrites": [
+      { "source": "/api/(.*)", "destination": "/app/api/$1/[...params].ts" }
     ],
     "headers": [
       {
