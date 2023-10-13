@@ -1,4 +1,4 @@
-import {Configuration, OpenAIApi} from "openai-edge";
+import { Configuration, OpenAIApi } from "openai-edge";
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -8,6 +8,17 @@ const openai = new OpenAIApi(config);
 export const runtime = "edge";
 
 export async function POST(req: Request) {
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "content-type, Authorization",
+      },
+    });
+  }
+
   try {
     const payload = await req.json();
 
@@ -24,7 +35,7 @@ export async function POST(req: Request) {
           function push() {
             reader
               ?.read()
-              .then(({done, value}) => {
+              .then(({ done, value }) => {
                 if (done) {
                   controller.close();
                   return;
@@ -44,7 +55,7 @@ export async function POST(req: Request) {
     }
 
     const data = await response.json();
-    return new Response(JSON.stringify(data), {status: 200});
+    return new Response(JSON.stringify(data), { status: 200 });
   } catch (error) {
     console.error(error);
 
